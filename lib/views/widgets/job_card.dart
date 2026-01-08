@@ -20,13 +20,21 @@ class JobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding:
-          const EdgeInsets.symmetric(horizontal: 10), // 10px from both sides
+          const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
-        height: 118, // fixed height
-        padding: const EdgeInsets.all(12), // internal padding
+        height: 118, 
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(7),
+          boxShadow: [
+    BoxShadow(
+      color: Colors.grey.withOpacity(0.2), // shadow color
+      spreadRadius: 1,                     // how much it spreads
+      blurRadius: 5,                        // blur effect
+      offset: const Offset(0, 3),           // x, y offset
+    ),],
+          
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

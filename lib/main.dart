@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'views/login/login_view.dart';
 import 'package:assignment/l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:assignment/themes/theme.dart';
 
 import 'package:get/get.dart';
 import "package:assignment/sources/repository.dart";
@@ -35,9 +36,7 @@ class MyApp extends StatelessWidget {
         Locale('es', ''),
       ],
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.lightTheme,
       initialRoute: '/login',
       getPages: AppRoutes.routes,
       initialBinding: BindingsBuilder(() => initialBinding()),
