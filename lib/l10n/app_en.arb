@@ -1,0 +1,12 @@
+{
+  "appTitle": "My App",
+  "login": "Login",
+  "welcomeMessage": "Welcome, {name}!",
+
+  "login_email_lable": "Enter Email", "@loginEmailLable": { "description": "Enter Email" },
+  "login_password_lable": "Enter Password", "@loginPasswordLable": { "description": "Enter Password" },
+  "login_to_your_account_title": "Login to your account", "@loginToYourAccountTitle": { "description": "Login to your account" },
+  "login_button": "LOGIN", "@loginButton": { "description": "LOGIN" },
+  "forgot_password_link": "Forgot password?", "@forgotPasswordButton": { "description": "Forgot password?" }
+
+}
