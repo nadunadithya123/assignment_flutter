@@ -34,7 +34,7 @@ class RemoteDataSource extends RemoteDataInterface {
   Future<User> login(LoginRequest request) async {
     try {
       final user = await apiClient.login(request);
-      if (user.userId == null || user.userId.isEmpty) {
+      if (user.userId == null || user.userId?.isEmpty == true) {
         throw Exception(user.message ?? 'Login failed');
       }
       return User(
@@ -50,6 +50,7 @@ class RemoteDataSource extends RemoteDataInterface {
     }
   }
 
+@override
   Future<List<Job>> getJobs({
     required String userId,
     required int pageNumber,

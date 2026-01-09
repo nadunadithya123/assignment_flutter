@@ -14,7 +14,6 @@ abstract class ApiClient {
   @POST('auth/login')
   Future<User> login(@Body() LoginRequest loginRequest);
 
-  // GET Job List
   @GET('smartView/pm/jobList')
   Future<List<Job>> getJobList(
     @Query('userId') String userId,

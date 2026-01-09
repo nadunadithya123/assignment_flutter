@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:assignment/themes/theme.dart';
 
 class JobCard extends StatelessWidget {
   final String title;
@@ -18,102 +19,89 @@ class JobCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        height: 118, 
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(7),
-          boxShadow: [
-    BoxShadow(
-      color: Colors.grey.withOpacity(0.2), // shadow color
-      spreadRadius: 1,                     // how much it spreads
-      blurRadius: 5,                        // blur effect
-      offset: const Offset(0, 3),           // x, y offset
-    ),],
-          
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Title
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+    return Container(
+      height: 118,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(7),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            location,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey.shade600,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 6,
+            runSpacing: 4,
+            children: [
+              _TagChip(
+                text: jobNumber,
+                color: green,
+                fontSize: 10,
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-
-            const SizedBox(height: 4),
-
-            // Location
-            Text(
-              location,
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey.shade600,
+              ...tags.map(
+                (tag) {
+                  if (tag == "Urgent") {
+                    return _TagChip(
+                      text: tag,
+                      color: Color.fromRGBO(222, 76, 57, 0.25),
+                      textColor: Colors.red,
+                      fontSize: 10,
+                    );
+                  } else if (tag == "Tenant Posted" || tag == "Unscheduled") {
+                    return _TagChip(
+                      text: tag,
+                      color: Colors.black,
+                      textColor: Colors.white,
+                      fontSize: 10,
+                    );
+                  } else {
+                    return _TagChip(
+                      text: tag,
+                      color: Colors.grey.shade200,
+                      fontSize: 10,
+                    );
+                  }
+                },
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-
-            const SizedBox(height: 8),
-
-            Wrap(
-              spacing: 6,
-              runSpacing: 4,
-              children: [
-                _TagChip(
-                  text: jobNumber,
-                  color: Colors.green.shade100,
-                  fontSize: 10,
-                ),
-                ...tags.map(
-                  (tag) {
-                    if (tag == "Urgent") {
-                      return _TagChip(
-                        text: tag,
-                        color: Color.fromRGBO(222, 76, 57, 0.25),
-                        textColor: Colors.red,
-                        fontSize: 10,
-                      );
-                    } else if (tag == "Tenant Posted" || tag == "Unscheduled") {
-                      return _TagChip(
-                        text: tag,
-                        color: Colors.black,
-                        textColor: Colors.white,
-                        fontSize: 10,
-                      );
-                    } else {
-                      return _TagChip(
-                        text: tag,
-                        color: Colors.grey.shade200,
-                        fontSize: 10,
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
-
-            const Spacer(),
-
-            Text(
-              'Posted on $postedDate',
-              style: TextStyle(
+            ],
+          ),
+          const Spacer(),
+          Text(
+            'Posted on $postedDate',
+            style: TextStyle(
                 fontSize: 12,
                 color: Colors.grey.shade500,
-                fontStyle: FontStyle.italic
-              ),
-            ),
-          ],
-        ),
+                fontStyle: FontStyle.italic),
+          ),
+        ],
       ),
     );
   }

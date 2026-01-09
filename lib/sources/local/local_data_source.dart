@@ -15,15 +15,13 @@ class LocalDataSource extends LocalDataInterface {
     final dir = await getApplicationDocumentsDirectory();
     _isar = await Isar.open(
       [UserSchema, JobSchema],
-      // your Isar schemas
       directory: dir.path,
-      inspector: true, // optional for debugging
+      inspector: true,
     );
   }
 
   @override
   Future<void> saveUser(User user) async {
-    // Ensure Isar is initialized
     if (_isar == null) await _initIsar();
 
     await _isar.writeTxn(() async {

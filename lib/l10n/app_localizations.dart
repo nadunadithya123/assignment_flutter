@@ -111,35 +111,161 @@ abstract class AppLocalizations {
   /// **'Welcome, {name}!'**
   String welcomeMessage(Object name);
 
-  /// No description provided for @login_email_lable.
+  /// Enter Email
   ///
   /// In en, this message translates to:
   /// **'Enter Email'**
   String get login_email_lable;
 
-  /// No description provided for @login_password_lable.
+  /// Enter Password
   ///
   /// In en, this message translates to:
   /// **'Enter Password'**
   String get login_password_lable;
 
-  /// No description provided for @login_to_your_account_title.
+  /// Login to your account
   ///
   /// In en, this message translates to:
   /// **'Login to your account'**
   String get login_to_your_account_title;
 
-  /// No description provided for @login_button.
+  /// LOGIN
   ///
   /// In en, this message translates to:
   /// **'LOGIN'**
   String get login_button;
 
-  /// No description provided for @forgot_password_link.
+  /// Forgot password?
   ///
   /// In en, this message translates to:
   /// **'Forgot password?'**
   String get forgot_password_link;
+
+  /// No jobs found
+  ///
+  /// In en, this message translates to:
+  /// **'No jobs found'**
+  String get no_job_found;
+
+  /// Label for Jobs tab in BottomNavigationBar
+  ///
+  /// In en, this message translates to:
+  /// **'Jobs'**
+  String get jobs_tab;
+
+  /// Label for Inspections tab in BottomNavigationBar
+  ///
+  /// In en, this message translates to:
+  /// **'Inspections'**
+  String get inspections_tab;
+
+  /// Label for Chat tab in BottomNavigationBar
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get chat_tab;
+
+  /// Label for Notifications tab in BottomNavigationBar
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications_tab;
+
+  /// Label for More tab in BottomNavigationBar
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get more_tab;
+
+  /// Label for tenant posted job status
+  ///
+  /// In en, this message translates to:
+  /// **'Unscheduled'**
+  String get tenant_posted_label;
+
+  /// No description provided for @unsheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Unscheduled'**
+  String get unsheduled;
+
+  /// Label for jobs with urgency type 'Urgent'
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent'**
+  String get job_urgency_urgent;
+
+  /// Label for filter button or filter feature
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter;
+
+  /// Validation message when email is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Email required'**
+  String get email_required;
+
+  /// Validation message when email format is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get email_invalid;
+
+  /// Validation message when password is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Password required'**
+  String get password_required;
+
+  /// Validation message when password is too short
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get password_min_length;
+
+  /// Filter option: Action
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get filter_action;
+
+  /// Filter option: Follow Up
+  ///
+  /// In en, this message translates to:
+  /// **'Follow Up'**
+  String get filter_follow_up;
+
+  /// Filter option: Review
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get filter_review;
+
+  /// Error shown when offline and no cached jobs exist
+  ///
+  /// In en, this message translates to:
+  /// **'No internet and no cached jobs available'**
+  String get error_no_internet_jobs;
+
+  /// Error shown when the user submits login form with empty email or password
+  ///
+  /// In en, this message translates to:
+  /// **'Email and password cannot be empty'**
+  String get error_empty_email_password;
+
+  /// Title shown in a snackbar or dialog when login fails
+  ///
+  /// In en, this message translates to:
+  /// **'Login Failed'**
+  String get login_failed_title;
+
+  /// Jobs page opening Title
+  ///
+  /// In en, this message translates to:
+  /// **'Jobs'**
+  String get job_main_title;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

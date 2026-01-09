@@ -1,3 +1,5 @@
+import 'package:assignment/l10n/app_localizations.dart';
+import 'package:assignment/l10n/app_localizations_en.dart';
 import 'package:assignment/sources/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,9 +9,9 @@ import 'package:assignment/model/user_model.dart';
 class LoginController extends GetxController {
   final Repository repository = Get.find();
 
-  var isLoading = false.obs;
-  var user = Rxn<User>();
-  var errorMessage = ''.obs;
+  final isLoading = false.obs;
+  final user = Rxn<User>();
+  final errorMessage = ''.obs;
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -21,11 +23,14 @@ class LoginController extends GetxController {
   }
 
   Future<void> login() async {
+    final context = Get.context;
+    if (context == null) return;
+
     final email = emailController.text.trim();
     final password = passwordController.text;
 
     if (email.isEmpty || password.isEmpty) {
-      errorMessage.value = "Email and password cannot be empty";
+      errorMessage.value = AppLocalizations.of(context)!.error_empty_email_password;
       Get.snackbar(
         "Error",
         errorMessage.value,
@@ -49,7 +54,7 @@ class LoginController extends GetxController {
     } on Exception catch (e) {
       errorMessage.value = e.toString().replaceAll('Exception: ', '');
       Get.snackbar(
-        "Login Failed",
+        AppLocalizations.of(context)!.login_failed_title,
         errorMessage.value,
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red.withOpacity(0.8),

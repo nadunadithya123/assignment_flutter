@@ -3,10 +3,89 @@
   "login": "Login",
   "welcomeMessage": "Welcome, {name}!",
 
-  "login_email_lable": "Enter Email", "@loginEmailLable": { "description": "Enter Email" },
-  "login_password_lable": "Enter Password", "@loginPasswordLable": { "description": "Enter Password" },
-  "login_to_your_account_title": "Login to your account", "@loginToYourAccountTitle": { "description": "Login to your account" },
-  "login_button": "LOGIN", "@loginButton": { "description": "LOGIN" },
-  "forgot_password_link": "Forgot password?", "@forgotPasswordButton": { "description": "Forgot password?" }
+  "login_email_lable": "Enter Email",
+  "@login_email_lable": { "description": "Enter Email" },
+
+  "login_password_lable": "Enter Password",
+  "@login_password_lable": { "description": "Enter Password" },
+
+  "login_to_your_account_title": "Login to your account",
+  "@login_to_your_account_title": { "description": "Login to your account" },
+
+  "login_button": "LOGIN",
+  "@login_button": { "description": "LOGIN" },
+
+  "forgot_password_link": "Forgot password?",
+  "@forgot_password_link": { "description": "Forgot password?" },
+
+  "no_job_found": "No jobs found",
+  "@no_job_found": { "description": "No jobs found" },
+
+  "jobs_tab": "Jobs",
+  "@jobs_tab": { "description": "Label for Jobs tab in BottomNavigationBar" },
+
+  "inspections_tab": "Inspections",
+  "@inspections_tab": { "description": "Label for Inspections tab in BottomNavigationBar" },
+
+  "chat_tab": "Chat",
+  "@chat_tab": { "description": "Label for Chat tab in BottomNavigationBar" },
+
+  "notifications_tab": "Notifications",
+  "@notifications_tab": { "description": "Label for Notifications tab in BottomNavigationBar" },
+
+  "more_tab": "More",
+  "@more_tab": { "description": "Label for More tab in BottomNavigationBar" },
+
+  "tenant_posted_label": "Unscheduled",
+  "@tenant_posted_label": { "description": "Label for tenant posted job status" },
+
+  "unsheduled": "Unscheduled",
+  "@unsheduled_label": { "description": "Label for tenant posted job status" },
+
+  "job_urgency_urgent": "Urgent",
+  "@job_urgency_urgent": { "description": "Label for jobs with urgency type 'Urgent'" },
+
+  "filter": "Filter",
+  "@filter": {
+  "description": "Label for filter button or filter feature"},
+
+"email_required": "Email required",
+"@email_required": { "description": "Validation message when email is empty" },
+
+"email_invalid": "Enter a valid email",
+"@email_invalid": { "description": "Validation message when email format is invalid" },
+
+"password_required": "Password required",
+"@password_required": { "description": "Validation message when password is empty" },
+
+"password_min_length": "Password must be at least 6 characters",
+"@password_min_length": { "description": "Validation message when password is too short" },
+
+"filter_action": "Action",
+"@filter_action": { "description": "Filter option: Action" },
+
+"filter_follow_up": "Follow Up",
+"@filter_follow_up": { "description": "Filter option: Follow Up" },
+
+"filter_review": "Review",
+"@filter_review": { "description": "Filter option: Review" },
+
+"error_no_internet_jobs": "No internet and no cached jobs available",
+"@error_no_internet_jobs": { "description": "Error shown when offline and no cached jobs exist" },
+
+"error_empty_email_password": "Email and password cannot be empty",
+"@error_empty_email_password": {
+  "description": "Error shown when the user submits login form with empty email or password"
+},
+
+"login_failed_title": "Login Failed",
+"@login_failed_title": {
+  "description": "Title shown in a snackbar or dialog when login fails"
+},
+
+"job_main_title" : "Jobs",
+"@job_main_title": {
+  "description" :"Jobs page opening Title"
+}
 
 }

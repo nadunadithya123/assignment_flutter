@@ -6,44 +6,30 @@ part 'job_model.g.dart';
 @Collection()
 @JsonSerializable()
 class Job {
+  @JsonKey(includeFromJson: false, includeToJson: false)
   Id idIsar = Isar.autoIncrement;
 
-  late String id;
-  late String jobNumber;
-  late String title;
-  late String address;
-  late String primaryJobType;
-  late int urgencyTypeId;
-  late int statusId;
-  late DateTime postedDateTime;
+  final String? id;
+  final String? jobNumber;
+  final String? title;
+  final String? address;
+  final String? primaryJobType;
+  final int? urgencyTypeId;
+  final int? statusId;
+  final DateTime? postedDateTime;
 
   Job({
-    required this.id,
-    required this.jobNumber,
-    required this.title,
-    required this.address,
-    required this.primaryJobType,
-    required this.urgencyTypeId,
-    required this.statusId,
-    required this.postedDateTime,
+    this.id,
+    this.jobNumber,
+    this.title,
+    this.address,
+    this.primaryJobType,
+    this.urgencyTypeId,
+    this.statusId,
+    this.postedDateTime,
   });
 
-  factory Job.fromJson(Map<String, dynamic> json) {
-
-    
-    return Job(
-      id: json['id'] ?? '',
-      jobNumber: json['jobNumber'] ?? '',
-      title: json['title'] ?? '',
-      address: json['address'] ?? '',
-      primaryJobType: json['primaryJobType'] ?? '',
-      urgencyTypeId: json['urgencyTypeId'] ?? 0,
-      statusId: json['statusId'] ?? 0,
-      postedDateTime: json['postedDateTime'] != null
-          ? DateTime.parse(json['postedDateTime'])
-          : DateTime.now(),
-    );
-  }
+  factory Job.fromJson(Map<String, dynamic> json) => _$JobFromJson(json);
 
   Map<String, dynamic> toJson() => _$JobToJson(this);
 }

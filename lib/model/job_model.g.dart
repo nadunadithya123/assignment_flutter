@@ -78,11 +78,36 @@ int _jobEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.address.length * 3;
-  bytesCount += 3 + object.id.length * 3;
-  bytesCount += 3 + object.jobNumber.length * 3;
-  bytesCount += 3 + object.primaryJobType.length * 3;
-  bytesCount += 3 + object.title.length * 3;
+  {
+    final value = object.address;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.id;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.jobNumber;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.primaryJobType;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.title;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
@@ -109,14 +134,14 @@ Job _jobDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = Job(
-    address: reader.readString(offsets[0]),
-    id: reader.readString(offsets[1]),
-    jobNumber: reader.readString(offsets[2]),
-    postedDateTime: reader.readDateTime(offsets[3]),
-    primaryJobType: reader.readString(offsets[4]),
-    statusId: reader.readLong(offsets[5]),
-    title: reader.readString(offsets[6]),
-    urgencyTypeId: reader.readLong(offsets[7]),
+    address: reader.readStringOrNull(offsets[0]),
+    id: reader.readStringOrNull(offsets[1]),
+    jobNumber: reader.readStringOrNull(offsets[2]),
+    postedDateTime: reader.readDateTimeOrNull(offsets[3]),
+    primaryJobType: reader.readStringOrNull(offsets[4]),
+    statusId: reader.readLongOrNull(offsets[5]),
+    title: reader.readStringOrNull(offsets[6]),
+    urgencyTypeId: reader.readLongOrNull(offsets[7]),
   );
   object.idIsar = id;
   return object;
@@ -130,21 +155,21 @@ P _jobDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 2:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 5:
-      return (reader.readLong(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 7:
-      return (reader.readLong(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -238,8 +263,24 @@ extension JobQueryWhere on QueryBuilder<Job, Job, QWhereClause> {
 }
 
 extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
+  QueryBuilder<Job, Job, QAfterFilterCondition> addressIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'address',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> addressIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'address',
+      ));
+    });
+  }
+
   QueryBuilder<Job, Job, QAfterFilterCondition> addressEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -252,7 +293,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> addressGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -267,7 +308,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> addressLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -282,8 +323,8 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> addressBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -366,8 +407,24 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Job, Job, QAfterFilterCondition> idIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> idIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'id',
+      ));
+    });
+  }
+
   QueryBuilder<Job, Job, QAfterFilterCondition> idEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -380,7 +437,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> idGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -395,7 +452,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> idLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -410,8 +467,8 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> idBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -546,8 +603,24 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Job, Job, QAfterFilterCondition> jobNumberIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'jobNumber',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> jobNumberIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'jobNumber',
+      ));
+    });
+  }
+
   QueryBuilder<Job, Job, QAfterFilterCondition> jobNumberEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -560,7 +633,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> jobNumberGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -575,7 +648,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> jobNumberLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -590,8 +663,8 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> jobNumberBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -674,8 +747,24 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Job, Job, QAfterFilterCondition> postedDateTimeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'postedDateTime',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> postedDateTimeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'postedDateTime',
+      ));
+    });
+  }
+
   QueryBuilder<Job, Job, QAfterFilterCondition> postedDateTimeEqualTo(
-      DateTime value) {
+      DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'postedDateTime',
@@ -685,7 +774,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> postedDateTimeGreaterThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -698,7 +787,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> postedDateTimeLessThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -711,8 +800,8 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> postedDateTimeBetween(
-    DateTime lower,
-    DateTime upper, {
+    DateTime? lower,
+    DateTime? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -727,8 +816,24 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Job, Job, QAfterFilterCondition> primaryJobTypeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'primaryJobType',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> primaryJobTypeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'primaryJobType',
+      ));
+    });
+  }
+
   QueryBuilder<Job, Job, QAfterFilterCondition> primaryJobTypeEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -741,7 +846,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> primaryJobTypeGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -756,7 +861,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> primaryJobTypeLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -771,8 +876,8 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> primaryJobTypeBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -857,7 +962,23 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Job, Job, QAfterFilterCondition> statusIdEqualTo(int value) {
+  QueryBuilder<Job, Job, QAfterFilterCondition> statusIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'statusId',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> statusIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'statusId',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> statusIdEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'statusId',
@@ -867,7 +988,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> statusIdGreaterThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -880,7 +1001,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> statusIdLessThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -893,8 +1014,8 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> statusIdBetween(
-    int lower,
-    int upper, {
+    int? lower,
+    int? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -909,8 +1030,24 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Job, Job, QAfterFilterCondition> titleIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'title',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> titleIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'title',
+      ));
+    });
+  }
+
   QueryBuilder<Job, Job, QAfterFilterCondition> titleEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -923,7 +1060,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> titleGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -938,7 +1075,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> titleLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -953,8 +1090,8 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> titleBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1037,8 +1174,24 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Job, Job, QAfterFilterCondition> urgencyTypeIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'urgencyTypeId',
+      ));
+    });
+  }
+
+  QueryBuilder<Job, Job, QAfterFilterCondition> urgencyTypeIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'urgencyTypeId',
+      ));
+    });
+  }
+
   QueryBuilder<Job, Job, QAfterFilterCondition> urgencyTypeIdEqualTo(
-      int value) {
+      int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'urgencyTypeId',
@@ -1048,7 +1201,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> urgencyTypeIdGreaterThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1061,7 +1214,7 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> urgencyTypeIdLessThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1074,8 +1227,8 @@ extension JobQueryFilter on QueryBuilder<Job, Job, QFilterCondition> {
   }
 
   QueryBuilder<Job, Job, QAfterFilterCondition> urgencyTypeIdBetween(
-    int lower,
-    int upper, {
+    int? lower,
+    int? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -1365,49 +1518,49 @@ extension JobQueryProperty on QueryBuilder<Job, Job, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Job, String, QQueryOperations> addressProperty() {
+  QueryBuilder<Job, String?, QQueryOperations> addressProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'address');
     });
   }
 
-  QueryBuilder<Job, String, QQueryOperations> idProperty() {
+  QueryBuilder<Job, String?, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<Job, String, QQueryOperations> jobNumberProperty() {
+  QueryBuilder<Job, String?, QQueryOperations> jobNumberProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'jobNumber');
     });
   }
 
-  QueryBuilder<Job, DateTime, QQueryOperations> postedDateTimeProperty() {
+  QueryBuilder<Job, DateTime?, QQueryOperations> postedDateTimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'postedDateTime');
     });
   }
 
-  QueryBuilder<Job, String, QQueryOperations> primaryJobTypeProperty() {
+  QueryBuilder<Job, String?, QQueryOperations> primaryJobTypeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'primaryJobType');
     });
   }
 
-  QueryBuilder<Job, int, QQueryOperations> statusIdProperty() {
+  QueryBuilder<Job, int?, QQueryOperations> statusIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'statusId');
     });
   }
 
-  QueryBuilder<Job, String, QQueryOperations> titleProperty() {
+  QueryBuilder<Job, String?, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });
   }
 
-  QueryBuilder<Job, int, QQueryOperations> urgencyTypeIdProperty() {
+  QueryBuilder<Job, int?, QQueryOperations> urgencyTypeIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'urgencyTypeId');
     });
@@ -1419,18 +1572,19 @@ extension JobQueryProperty on QueryBuilder<Job, Job, QQueryProperty> {
 // **************************************************************************
 
 Job _$JobFromJson(Map<String, dynamic> json) => Job(
-      id: json['id'] as String,
-      jobNumber: json['jobNumber'] as String,
-      title: json['title'] as String,
-      address: json['address'] as String,
-      primaryJobType: json['primaryJobType'] as String,
-      urgencyTypeId: (json['urgencyTypeId'] as num).toInt(),
-      statusId: (json['statusId'] as num).toInt(),
-      postedDateTime: DateTime.parse(json['postedDateTime'] as String),
-    )..idIsar = (json['idIsar'] as num).toInt();
+      id: json['id'] as String?,
+      jobNumber: json['jobNumber'] as String?,
+      title: json['title'] as String?,
+      address: json['address'] as String?,
+      primaryJobType: json['primaryJobType'] as String?,
+      urgencyTypeId: (json['urgencyTypeId'] as num?)?.toInt(),
+      statusId: (json['statusId'] as num?)?.toInt(),
+      postedDateTime: json['postedDateTime'] == null
+          ? null
+          : DateTime.parse(json['postedDateTime'] as String),
+    );
 
 Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
-      'idIsar': instance.idIsar,
       'id': instance.id,
       'jobNumber': instance.jobNumber,
       'title': instance.title,
@@ -1438,5 +1592,5 @@ Map<String, dynamic> _$JobToJson(Job instance) => <String, dynamic>{
       'primaryJobType': instance.primaryJobType,
       'urgencyTypeId': instance.urgencyTypeId,
       'statusId': instance.statusId,
-      'postedDateTime': instance.postedDateTime.toIso8601String(),
+      'postedDateTime': instance.postedDateTime?.toIso8601String(),
     };

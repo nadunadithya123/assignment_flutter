@@ -1,10 +1,9 @@
-// import 'package:assignment/views/job';
 import 'package:assignment/views/jobs/jobs_binding.dart';
 import 'package:assignment/views/login/login_binding.dart';
 import 'package:get/get.dart';
 import 'package:assignment/views/jobs/jobs_view.dart';
 import 'package:assignment/views/login/login_view.dart';
- 
+
 class AppRoutes {
   static final routes = [
     GetPage(
@@ -14,11 +13,8 @@ class AppRoutes {
     ),
     GetPage(
       name: '/jobs',
-      page: () => JobsView(
-      ),
+      page: () => JobsView(),
       binding: JobsBinding(),
     ),
   ];
 }
- 
- 

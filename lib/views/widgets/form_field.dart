@@ -23,42 +23,49 @@ class CommonTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ValueNotifier<bool> _obscureText =
+    final ValueNotifier<bool> obscureText =
         obscureNotifier ?? ValueNotifier<bool>(isPassword);
 
     return ValueListenableBuilder<bool>(
-      valueListenable: _obscureText,
-      builder: (context, value, child) {
+      valueListenable: obscureText,
+      builder: (context, isHidden, _) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
               controller: controller,
               keyboardType: keyboardType,
-              obscureText: value,
+              obscureText: isPassword ? isHidden : false,
               validator: validator,
               style: const TextStyle(
                 letterSpacing: 2,
                 fontSize: 14,
               ),
               decoration: InputDecoration(
-                floatingLabelStyle: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey, // focused state
-                ),
                 labelText: labelText,
                 border: InputBorder.none,
+                floatingLabelStyle: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
                 suffixIcon: isPassword
-                    ? Icon(
-                        Icons.lock_outline, // <-- outline lock icon
-                        color: Colors.grey,
+                    ? IconButton(
+                        icon: Icon(
+                          isHidden
+                              ? Icons.lock_outline
+                              : Icons.lock_open_outlined,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () {
+                          obscureText.value = !obscureText.value;
+                        },
                       )
                     : null,
               ),
             ),
             const SizedBox(height: 4),
             Container(
-              width: 326, // desired line length
+              width: 326,
               height: 1,
               color: const Color.fromRGBO(0, 0, 0, 0.3),
             ),
@@ -68,3 +75,4 @@ class CommonTextFormField extends StatelessWidget {
     );
   }
 }
+

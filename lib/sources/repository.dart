@@ -42,17 +42,19 @@ class Repository implements RepositoryInterface {
     }
   }
 
+
+  @override
   Future<List<Job>> getJobs() async {
     final online = await _isConnected();
     final user = await _localDataSource.getUser();
 
-    if (user == null || user.userId.isEmpty) {
+    if (user == null || user.userId?.isEmpty == true) {
       throw Exception('User not logged in');
     }
 
     if (online) {
       final jobs = await _remoteDataSource.getJobs(
-        userId: user.userId,
+        userId: user.userId ?? '',
         pageNumber: 1,
         pageSize: 10,
         channelId: 2,
